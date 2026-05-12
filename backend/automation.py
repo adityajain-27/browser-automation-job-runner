@@ -48,7 +48,7 @@ async def run_automation(
             last_step = "page.loaded"
 
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-            await page.wait_for_timeout(500)
+            await page.wait_for_load_state("networkidle")
             await emit("action.taken", {
                 "action": "scroll",
                 "description": "Scrolling to load all content",
